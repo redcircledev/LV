@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
+using Android.Content;
 
 namespace LV
 {
@@ -18,8 +19,19 @@ namespace LV
             SetContentView(Resource.Layout.main);
             var booksList = FindViewById<ListView>(Resource.Id.booksListView);
             booksList.Adapter = new BookAdapter(BookData.Books);
+            booksList.ItemClick += OnBooksClick;
 
         }
+
+        void OnBooksClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            int position = e.Position;
+
+            var intent = new Intent(this, typeof(DetailBooks));
+            intent.PutExtra("ItemPosition", position);
+            StartActivity(intent);
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
 
