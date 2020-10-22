@@ -21,7 +21,6 @@ namespace LV
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Details); 
-            //Se rescata el dato que le mandamos a travez del nombre que le pusimos al mandarlo "ItemPosition". Si no recibe nada, entonces será -1
             int position = Intent.GetIntExtra("ItemPosition", -1);
             var item = BookData.Books[position];
 
